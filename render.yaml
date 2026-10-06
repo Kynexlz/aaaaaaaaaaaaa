@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: orbit-discord-bot
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    disk:
+      name: temporary-ban-data
+      mountPath: /opt/render/project/src/data
+      sizeGB: 1
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: CLIENT_ID
+        sync: false
+      - key: GUILD_ID
+        sync: false
+      - key: WELCOME_CHANNEL_ID
+        sync: false
+      - key: BOOST_CHANNEL_ID
+        sync: false
